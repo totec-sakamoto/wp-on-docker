@@ -4,6 +4,8 @@ wordpress/*
 !wordpress/wp-content/
 wordpress/wp-content/*
 !wordpress/wp-content/themes/
+wordpress/wp-content/themes/**/node_modules/
+wordpress/wp-content/themes/**/public/build/
 !wordpress/wp-content/uploads/
 
 # Log files
