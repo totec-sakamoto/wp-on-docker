@@ -1,0 +1,46 @@
+{
+  "name": "alpacalystic",
+  "version": "0.1.0",
+  "description": "The most alpacalystic theme ever.",
+  "author": "Totec Amenity ltd.",
+  "private": true,
+  "scripts": {
+    "build": "webpack --node-env=production",
+    "dev": "webpack watch --node-env=development",
+    "lint": "eslint",
+    "format": "prettier ./src/js ./src/scss --write --config-precedence file-override"
+  },
+  "dependencies": {
+    "dayjs": "^1.11.13"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3.3.1",
+    "@eslint/js": "^9.33.0",
+    "autoprefixer": "^10.4.21",
+    "browser-sync": "^2.29.3",
+    "browser-sync-webpack-plugin": "^2.4.0",
+    "copy-webpack-plugin": "^13.0.1",
+    "css-loader": "^7.1.2",
+    "css-minimizer-webpack-plugin": "^7.0.2",
+    "eslint": "^9.33.0",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-webpack-plugin": "^5.0.2",
+    "globals": "^16.3.0",
+    "mini-css-extract-plugin": "^2.9.4",
+    "postcss": "^8.5.6",
+    "postcss-loader": "^8.1.1",
+    "prettier": "^3.6.2",
+    "sass": "1.77.6",
+    "sass-loader": "^16.0.5",
+    "webpack": "^5.101.3",
+    "webpack-cli": "^5.1.4",
+    "webpack-manifest-plugin": "^5.0.1",
+    "webpackbar": "^7.0.0"
+  },
+  "browserslist": [
+    "> .5%"
+  ],
+  "volta": {
+    "node": "22.18.0"
+  }
+}

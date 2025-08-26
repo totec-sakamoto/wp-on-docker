@@ -1,0 +1,22 @@
+*.php
+/node_modules/
+
+# Production
+/public/build/
+
+# Lock files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Log files
+.pnpm-debug.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Prefix for local sources
+___x*
+
+# Backup files
+public/languages/ja-backup*
