@@ -9,9 +9,6 @@
  * @since Twenty Twenty-Five 1.0
  */
 
-/* Temporarily disable SSL verification (Be sure to activate on production) */
-add_filter( 'https_ssl_verify', '__return_false' );
-
 // Adds theme support for post formats.
 if ( ! function_exists( 'twentytwentyfive_post_format_setup' ) ) :
 	/**
@@ -159,13 +156,3 @@ if ( ! function_exists( 'twentytwentyfive_format_binding' ) ) :
 		}
 	}
 endif;
-
-// Allow SVG uploads
-function add_file_types_to_uploads($file_types)
-{
-	$new_filetypes = array();
-	$new_filetypes['svg'] = 'image/svg+xml';
-	$file_types = array_merge($file_types, $new_filetypes);
-	return $file_types;
-}
-add_action('upload_mimes', 'add_file_types_to_uploads');
