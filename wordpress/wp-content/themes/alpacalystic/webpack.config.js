@@ -1,11 +1,9 @@
 /**
  * @file Webpack configuration
- * @description Handles JS/Sass bundling, asset copying, manifest generation, linting, and live reload.
+ * @description Handles JS bundling, asset copying, manifest generation, linting, and live reload.
  */
 
 const path = require('path')
-const MiniCssExtractPlugin = require('mini-css-extract-plugin')
-const CssMinimizerPlugin = require('css-minimizer-webpack-plugin')
 const CopyPlugin = require('copy-webpack-plugin')
 const BrowserSyncPlugin = require('browser-sync-webpack-plugin')
 const WebpackBar = require('webpackbar')
@@ -15,14 +13,14 @@ const isDev = process.env.NODE_ENV === 'development'
 
 /**
  * @typedef {Object} ThemeConfig
- * @property {string[]} entry - Entry points for JS and Sass
+ * @property {string[]} entry - Entry points for JS
  * @property {string[]} dirsToCopy - Asset directories to copy
  * @property {string} containerUrl - Proxy URL for BrowserSync
  */
 
 /** @type {ThemeConfig} */
 const config = {
-  entry: ['./js/main.js', './scss/main.scss'],
+  entry: ['./js/main.js'],
   dirsToCopy: ['img'],
   containerUrl: 'http://localhost:8080/',
 }
@@ -41,7 +39,7 @@ module.exports = {
   // Set context to 'src' directory for cleaner imports
   context: path.resolve(__dirname, 'src'),
 
-  // Entry points for JS and Sass
+  // Entry points for JS
   entry: config.entry,
 
   // Output configuration
@@ -55,15 +53,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.(sa|sc|c)ss$/,
-        use: [
-          MiniCssExtractPlugin.loader,
-          'css-loader',
-          'postcss-loader',
-          'sass-loader',
-        ],
-      },
-      {
         test: /\.(png|svg|jpg|jpeg|gif)$/i,
         type: 'asset/resource', // Emits files as separate assets
       },
@@ -72,12 +61,6 @@ module.exports = {
 
   // Plugins for additional functionality
   plugins: [
-    // Extract CSS to separate files
-    new MiniCssExtractPlugin({
-      filename: isDev ? 'css/main.css' : 'css/main.[contenthash:8].css',
-      chunkFilename: '[id].css',
-    }),
-
     // Copy asset directories to output
     new CopyPlugin({
       patterns: generateCopyPatterns(),
@@ -104,7 +87,7 @@ module.exports = {
     new WebpackManifestPlugin({
       fileName: 'webpack.manifest.json',
       publicPath: '/build',
-      filter: (file) => /\.(js|css)$/.test(file.name),
+      filter: (file) => /\.js$/.test(file.name),
       generate: (_, files) => {
         // Custom manifest structure for WordPress enqueue
         const manifest = {}
@@ -124,16 +107,6 @@ module.exports = {
   optimization: {
     minimizer: [
       '...', // Use default minimizers (Terser for JS)
-      new CssMinimizerPlugin({
-        minimizerOptions: {
-          preset: [
-            'default',
-            {
-              svgo: false, // Disable SVG optimization for CSS
-            },
-          ],
-        },
-      }),
     ],
   },
 
